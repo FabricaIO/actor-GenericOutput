@@ -8,10 +8,10 @@
 #pragma once
 #include <Arduino.h>
 #include <ArduinoJson.h>
-#include <SignalReceiver.h>
+#include <Actor.h>
 
 /// @brief Class describing a generic output on a GPIO pin
-class GenericOutput : public SignalReceiver {
+class GenericOutput : public Actor {
 	protected:
 		/// @brief Output configuration
 		struct {
@@ -30,7 +30,7 @@ class GenericOutput : public SignalReceiver {
 	public:
 		GenericOutput(int Pin, String configFile = "GenericOutput.json");
 		bool begin();
-		std::tuple<bool, String> receiveSignal(int signal, String payload = "");
+		std::tuple<bool, String> receiveAction(int action, String payload = "");
 		String getConfig();
 		bool setConfig(String config);
 };

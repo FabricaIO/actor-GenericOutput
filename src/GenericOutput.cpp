@@ -12,10 +12,10 @@ GenericOutput::GenericOutput(int Pin, String configFile) {
 /// @return True on success
 bool GenericOutput::begin() {
 	// Set description
-	Description.signalQuantity = 1;
+	Description.actionQuantity = 1;
 	Description.type = "output";
 	Description.name = "Generic Output";
-	Description.signals = {{"state", 0}};
+	Description.actions = {{"state", 0}};
 	Description.id = 0;
 	bool result = false;
 	// Create settings directory if necessary
@@ -28,12 +28,12 @@ bool GenericOutput::begin() {
 	}
 }
 
-/// @brief Receives a signal
-/// @param signal The signal to process (only option is 0 for reset)
+/// @brief Receives a action
+/// @param action The action to process (only option is 0 for reset)
 /// @param payload A 0 or 1 to set the pin high or low
 /// @return JSON response with OK
-std::tuple<bool, String> GenericOutput::receiveSignal(int signal, String payload) {
-	if (signal == 0) {
+std::tuple<bool, String> GenericOutput::receiveAction(int action, String payload) {
+	if (action == 0) {
 		digitalWrite(current_config.pin, payload.toInt());
 	}	
 	return { true, R"({"Response": "OK"})" };
