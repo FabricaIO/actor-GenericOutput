@@ -5,7 +5,7 @@
 /// @param configFile Name of the config file to use
 GenericOutput::GenericOutput(int Pin, String configFile) {
 	config_path = "/settings/sig/" + configFile;
-	current_config.pin = Pin;
+	output_config.Pin = Pin;
 }
 
 /// @brief Starts an output 
@@ -21,7 +21,7 @@ bool GenericOutput::begin() {
 	// Create settings directory if necessary
 	if (!checkConfig(config_path)) {
 		// Set defaults
-		return setConfig(R"({ "pin":)" + String(current_config.pin) + R"(, "name": "Generic Output" })");
+		return saveConfig(config_path, getConfig());
 	} else {
 		// Load settings
 		return setConfig(Storage::readFile(config_path));
@@ -34,7 +34,7 @@ bool GenericOutput::begin() {
 /// @return JSON response with OK
 std::tuple<bool, String> GenericOutput::receiveAction(int action, String payload) {
 	if (action == 0) {
-		digitalWrite(current_config.pin, payload.toInt());
+		digitalWrite(output_config.Pin, payload.toInt());
 	}	
 	return { true, R"({"Response": "OK"})" };
 }
@@ -45,8 +45,7 @@ String GenericOutput::getConfig() {
 	// Allocate the JSON document
 	JsonDocument doc;
 	// Assign current values
-	doc["pin"] = current_config.pin;
-	doc["name"] = current_config.name;
+	doc["Pin"] = output_config.Pin;
 
 	// Create string to hold output
 	String output;
@@ -70,9 +69,7 @@ bool GenericOutput::setConfig(String config) {
 		return false;
 	}
 	// Assign loaded values
-	current_config.pin = doc["pin"].as<int>();
-	current_config.name = doc["name"].as<String>();
-	Description.name = current_config.name;
+	output_config.Pin = doc["Pin"].as<int>();
 
 	if (!saveConfig(config_path, getConfig())) {
 		return false;
@@ -83,6 +80,6 @@ bool GenericOutput::setConfig(String config) {
 /// @brief Configures the pin for use
 /// @return True on success
 bool GenericOutput::configureOutput() {
-	pinMode(current_config.pin, OUTPUT);
+	pinMode(output_config.Pin, OUTPUT);
 	return true;
 }

@@ -16,11 +16,8 @@ class GenericOutput : public Actor {
 		/// @brief Output configuration
 		struct {
 			/// @brief The pin number attached to the output
-			int pin;
-
-			/// @brief The name of this output
-			String name;
-		} current_config;
+			int Pin = D2;
+		} output_config;
 
 		/// @brief Path to configuration file
 		String config_path;
