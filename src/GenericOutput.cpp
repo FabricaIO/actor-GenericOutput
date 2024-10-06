@@ -28,9 +28,9 @@ bool GenericOutput::begin() {
 	}
 }
 
-/// @brief Receives a action
-/// @param action The action to process (only option is 0 for reset)
-/// @param payload A 0 or 1 to set the pin high or low
+/// @brief Receives an action
+/// @param action The action to process (only option is 0 for set output)
+/// @param payload A 0 or 1 to set the pin low or high
 /// @return JSON response with OK
 std::tuple<bool, String> GenericOutput::receiveAction(int action, String payload) {
 	if (action == 0) {
