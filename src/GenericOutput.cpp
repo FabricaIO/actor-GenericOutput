@@ -16,7 +16,6 @@ bool GenericOutput::begin() {
 	Description.type = "output";
 	Description.name = "Generic Output";
 	Description.actions = {{"state", 0}};
-	Description.id = 0;
 	bool result = false;
 	// Create settings directory if necessary
 	if (!checkConfig(config_path)) {
