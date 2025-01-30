@@ -16,7 +16,7 @@ class GenericOutput : public Actor {
 		/// @brief Output configuration
 		struct {
 			/// @brief The pin number attached to the output
-			int Pin = D2;
+			int Pin;
 		} output_config;
 
 		/// @brief Path to configuration file
