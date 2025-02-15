@@ -1,0 +1,50 @@
+{
+	"name": "Fabrica-IO Actor Generic Output",
+	"version": "0.5.0",
+	"description": "Controls a GPIO as an output",
+	"keywords": "Fabrica-IO, actor, output",
+	"repository":
+	{
+	  "type": "git",
+	  "url": "https://github.com/FabricaIO/actor-GenericOutput.git"
+	},
+	"authors":
+	[
+	  {
+		"name": "Sam Groveman",
+		"email": "SamGroveman@outlook.com",
+		"url": "https://github.com/FabricaIO"
+	  }
+	],
+	"dependencies": {
+	  },
+	"license": "GPLv3",
+	"homepage": "https://github.com/FabricaIO",
+	"frameworks": "arduino",
+	"platforms": "*",
+	"fabrica-io" : {
+		"name": "",
+		"type": 1,
+		"category": "Output",
+		"libname": "GenericOutput",
+		"includes": ["GenericOutput"],
+		"description": "Controls a GPIO as an output",
+		"constructor":
+		[
+			[
+				{
+					"name": "Pin",
+					"type": "int",
+					"description": "The pin to use",
+					"default": ""
+				},
+				{
+					"name": "Configfile",
+					"type": "String",
+					"description": "The file name to store settings in",
+					"default": "GenericOutput.json"
+				}
+			]
+		]
+	}
+  }
