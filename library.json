@@ -23,7 +23,7 @@
 	"frameworks": "arduino",
 	"platforms": "*",
 	"fabrica-io" : {
-		"name": "",
+		"name": "DigitalOutput",
 		"type": 1,
 		"category": "Output",
 		"libname": "GenericOutput",
