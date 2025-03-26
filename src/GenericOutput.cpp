@@ -43,8 +43,8 @@ String GenericOutput::getConfig() {
 	// Allocate the JSON document
 	JsonDocument doc;
 	// Assign current values
+	doc["Name"] = Description.name;
 	doc["Pin"] = output_config.Pin;
-
 	// Create string to hold output
 	String output;
 	// Serialize to string
@@ -68,6 +68,7 @@ bool GenericOutput::setConfig(String config, bool save) {
 		return false;
 	}
 	// Assign loaded values
+	Description.name = doc["Name"].as<String>();
 	output_config.Pin = doc["Pin"].as<int>();
 	if (save) {
 		if (!saveConfig(config_path, getConfig())) {
