@@ -1,9 +1,10 @@
 #include"GenericOutput.h"
 
 /// @brief Creates a generic output
+/// @param Name The device name
 /// @param Pin Pin to use
 /// @param configFile Name of the config file to use
-GenericOutput::GenericOutput(int Pin, String configFile) {
+GenericOutput::GenericOutput(String Name, int Pin, String configFile) : Actor(Name) {
 	config_path = "/settings/act/" + configFile;
 	output_config.Pin = Pin;
 }
@@ -14,7 +15,6 @@ bool GenericOutput::begin() {
 	// Set description
 	Description.actionQuantity = 1;
 	Description.type = "output";
-	Description.name = "Generic Output";
 	Description.actions = {{"state", 0}};
 	// Create settings directory if necessary
 	if (!checkConfig(config_path)) {
