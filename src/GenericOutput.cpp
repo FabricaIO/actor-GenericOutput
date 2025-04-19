@@ -71,7 +71,7 @@ bool GenericOutput::setConfig(String config, bool save) {
 	Description.name = doc["Name"].as<String>();
 	output_config.Pin = doc["Pin"].as<int>();
 	if (save) {
-		if (!saveConfig(config_path, getConfig())) {
+		if (!saveConfig(config_path, config)) {
 			return false;
 		}
 	}
