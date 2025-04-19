@@ -19,7 +19,7 @@ bool GenericOutput::begin() {
 	// Create settings directory if necessary
 	if (!checkConfig(config_path)) {
 		// Set defaults
-		return saveConfig(config_path, getConfig());
+		return setConfig(getConfig(), true);
 	} else {
 		// Load settings
 		return setConfig(Storage::readFile(config_path), false);
