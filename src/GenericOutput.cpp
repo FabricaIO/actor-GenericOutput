@@ -34,7 +34,7 @@ std::tuple<bool, String> GenericOutput::receiveAction(int action, String payload
 	if (action == 0) {
 		digitalWrite(output_config.Pin, payload.toInt());
 	}	
-	return { true, R"({"Response": "OK"})" };
+	return { true, R"({"success": true})" };
 }
 
 /// @brief Gets the current config
