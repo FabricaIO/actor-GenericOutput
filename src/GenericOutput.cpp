@@ -15,7 +15,7 @@ bool GenericOutput::begin() {
 	// Set description
 	Description.actionQuantity = 1;
 	Description.type = "output";
-	Description.actions = {{"state", 0}};
+	Description.actions = {{"setoutput", 0}, {"toggleoutput", 1}};
 	// Create settings directory if necessary
 	if (!checkConfig(config_path)) {
 		// Set defaults
@@ -27,13 +27,16 @@ bool GenericOutput::begin() {
 }
 
 /// @brief Receives an action
-/// @param action The action to process (only option is 0 for set output)
-/// @param payload A 0 or 1 to set the pin low or high
+/// @param action The action to process (0 set output, 1 toggle output)
+/// @param payload A 0 or 1 to set the pin low or high if setting output, or empty if toggling output
+/// @note If the action is 0, the payload should be "0" or "1" to set the pin low or high respectively.
 /// @return JSON response with OK
 std::tuple<bool, String> GenericOutput::receiveAction(int action, String payload) {
 	if (action == 0) {
 		digitalWrite(output_config.Pin, payload.toInt());
-	}	
+	} else if (action == 1) {
+		digitalWrite(output_config.Pin, !digitalRead(output_config.Pin));
+	}
 	return { true, R"({"success": true})" };
 }
 
