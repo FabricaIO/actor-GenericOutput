@@ -13,9 +13,8 @@ GenericOutput::GenericOutput(String Name, int Pin, String configFile) : Actor(Na
 /// @return True on success
 bool GenericOutput::begin() {
 	// Set description
-	Description.actionQuantity = 1;
 	Description.type = "output";
-	Description.actions = {{"setoutput", 0}, {"toggleoutput", 1}};
+	Description.actions = {{"setoutput", 0}, {"toggleOutput", 1}};
 	// Create settings directory if necessary
 	if (!checkConfig(config_path)) {
 		// Set defaults
