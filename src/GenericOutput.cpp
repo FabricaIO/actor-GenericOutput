@@ -30,7 +30,7 @@ bool GenericOutput::begin() {
 /// @param payload A 0 or 1 to set the pin low or high if setting output, or empty if toggling output
 /// @note If the action is 0, the payload should be "0" or "1" to set the pin low or high respectively.
 /// @return JSON response with OK
-std::tuple<bool, String> GenericOutput::receiveAction(int action, String payload) {
+std::pair<bool, String> GenericOutput::receiveAction(const int action, const String& payload) {
 	if (action == 0) {
 		digitalWrite(output_config.Pin, payload.toInt());
 	} else if (action == 1) {

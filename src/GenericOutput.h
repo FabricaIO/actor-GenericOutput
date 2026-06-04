@@ -27,7 +27,7 @@ class GenericOutput : public Actor {
 	public:
 		GenericOutput(String Name, int Pin, String configFile = "GenericOutput.json");
 		bool begin();
-		std::tuple<bool, String> receiveAction(int action, String payload = "");
+		std::pair<bool, String> receiveAction(const int action, const String& payload = "");
 		String getConfig();
 		bool setConfig(String config, bool save);
 };
